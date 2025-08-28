@@ -17,13 +17,8 @@ from typing import List, Dict, Optional, Any, Union
 from datetime import datetime, timedelta
 import logging
 
-from .services.ai_service import AIService
-# TODO: Add these imports when the full AI service is implemented
-# from .services.ai_service import (
-#     PredictiveMaintenance, AnomalyDetection,
-#     UserBehaviorCluster, AIRecommendation, ModelInfo
-# )
-from .core.auth import get_current_user
+from ..services.intelligence_service import AIService
+from ..core.auth import get_current_user
 
 # Initialize router and logger
 router = APIRouter(prefix="/api/ai", tags=["AI Analytics"])

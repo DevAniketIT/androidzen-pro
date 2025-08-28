@@ -27,7 +27,7 @@ from .api.security import router as security_router
 from .api.network import router as network_router
 from .api.auth import router as auth_router
 from .api.websocket import router as websocket_router
-from .api.ai_analytics import router as ai_analytics_router
+from .api.analytics_service import router as ai_analytics_router
 from .api.monitoring import router as monitoring_router
 from .api.admin import router as admin_router
 from .api.reports import router as reports_router
