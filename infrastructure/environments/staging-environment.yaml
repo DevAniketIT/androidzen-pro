@@ -1,0 +1,190 @@
+# Staging Environment Configuration
+# Production-like staging environment with identical versions and configurations
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: staging-environment-config
+  namespace: androidzen-staging
+data:
+  environment: "staging"
+  
+---
+# Infrastructure Configuration
+infrastructure:
+  cloud_provider: "aws"  # or gcp, azure
+  region: "us-west-2"
+  availability_zones:
+    - "us-west-2a"
+    - "us-west-2b"
+    - "us-west-2c"
+
+# Compute Configuration
+compute:
+  kubernetes:
+    version: "1.28"
+    node_pools:
+      - name: "primary-pool"
+        machine_type: "t3.medium"
+        min_nodes: 2
+        max_nodes: 10
+        disk_size: "100Gi"
+        labels:
+          workload-type: "general"
+      - name: "device-lab-pool"
+        machine_type: "m5.large"
+        min_nodes: 1
+        max_nodes: 5
+        disk_size: "200Gi"
+        labels:
+          workload-type: "device-lab"
+        taints:
+          - key: "device-lab"
+            value: "true"
+            effect: "NoSchedule"
+
+# Application Configuration
+applications:
+  androidzen-backend:
+    image: "androidzen/backend:latest"
+    replicas: 2
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+    env:
+      - name: "ENVIRONMENT"
+        value: "staging"
+      - name: "LOG_LEVEL"
+        value: "DEBUG"
+      - name: "DB_HOST"
+        valueFrom:
+          secretKeyRef:
+            name: "database-credentials"
+            key: "host"
+    
+  androidzen-frontend:
+    image: "androidzen/frontend:latest"
+    replicas: 2
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+# Database Configuration (PostgreSQL for production parity)
+database:
+  postgresql:
+    version: "15.4"
+    instance_class: "db.t3.medium"
+    allocated_storage: 100
+    storage_encrypted: true
+    multi_az: false
+    backup_retention_period: 7
+    backup_window: "03:00-04:00"
+    maintenance_window: "sun:04:00-sun:05:00"
+    
+  redis:
+    version: "7.0"
+    instance_class: "cache.t3.micro"
+    num_cache_nodes: 1
+    parameter_group: "default.redis7"
+
+# Autoscaling Configuration
+autoscaling:
+  horizontal_pod_autoscaler:
+    enabled: true
+    min_replicas: 2
+    max_replicas: 10
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+    
+  cluster_autoscaler:
+    enabled: true
+    scale_down_delay_after_add: "10m"
+    scale_down_unneeded_time: "10m"
+    scale_down_utilization_threshold: 0.5
+
+# Observability Configuration
+observability:
+  prometheus:
+    enabled: true
+    retention: "30d"
+    storage_size: "50Gi"
+    
+  grafana:
+    enabled: true
+    admin_password: "{{ .Values.grafana.adminPassword }}"
+    
+  jaeger:
+    enabled: true
+    storage_type: "elasticsearch"
+    
+  elasticsearch:
+    enabled: true
+    version: "7.17.0"
+    replicas: 1
+    storage_size: "30Gi"
+
+# Network Policies
+network_policies:
+  ingress:
+    enabled: true
+    class: "nginx"
+    tls_enabled: true
+    certificate_issuer: "letsencrypt-staging"
+    
+  egress_rules:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: "database"
+      ports:
+        - protocol: TCP
+          port: 5432
+    - to:
+        - podSelector:
+            matchLabels:
+              app: "redis"
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to: []  # Allow all egress to internet
+      ports:
+        - protocol: TCP
+          port: 443
+        - protocol: TCP
+          port: 80
+
+# Security Configuration
+security:
+  pod_security_policy:
+    enabled: true
+    
+  rbac:
+    enabled: true
+    
+  network_policies:
+    enabled: true
+    default_deny_ingress: true
+    default_deny_egress: false
+    
+  secrets_management:
+    provider: "kubernetes"  # or vault, aws-secrets-manager
+    encryption_at_rest: true
+    
+# Disaster Recovery
+disaster_recovery:
+  backup:
+    enabled: true
+    schedule: "0 2 * * *"  # Daily at 2 AM
+    retention_days: 30
+    
+  restore_testing:
+    enabled: true
+    schedule: "0 3 * * 0"  # Weekly on Sunday at 3 AM

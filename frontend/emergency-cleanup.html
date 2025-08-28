@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AndroidZen Pro - Emergency Cleanup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cleanup-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .icon {
+            font-size: 48px;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #dc2626;
+        }
+        .btn.success {
+            background: #10b981;
+        }
+        .btn.success:hover {
+            background: #059669;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="cleanup-container">
+        <div class="icon">🛠️</div>
+        <h1>Emergency Cleanup</h1>
+        <p>If your browser is hanging or freezing, use this tool to clear all intervals and reset the application state.</p>
+        
+        <div id="status"></div>
+        
+        <button class="btn" onclick="emergencyCleanup()">🚨 Emergency Cleanup</button>
+        <button class="btn success" onclick="goToSetup()">🔧 Go to Setup</button>
+    </div>
+
+    <script>
+        function emergencyCleanup() {
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                // Clear all intervals (brute force method)
+                const highestIntervalId = setInterval(function(){}, 1);
+                for (let i = 0; i < highestIntervalId; i++) {
+                    clearInterval(i);
+                }
+                
+                // Clear all timeouts
+                const highestTimeoutId = setTimeout(function(){}, 1);
+                for (let i = 0; i < highestTimeoutId; i++) {
+                    clearTimeout(i);
+                }
+                
+                // Clear localStorage settings
+                localStorage.removeItem('androidzen-settings');
+                sessionStorage.clear();
+                
+                // Clear any global intervals if they exist
+                if (window.Dashboard && window.Dashboard.stopDemoMode) {
+                    window.Dashboard.stopDemoMode();
+                }
+                if (window.Charts && window.Charts.stopDemoMode) {
+                    window.Charts.stopDemoMode();
+                }
+                
+                // Force garbage collection if available
+                if (window.gc && typeof window.gc === 'function') {
+                    window.gc();
+                }
+                
+                statusDiv.className = 'status success';
+                statusDiv.textContent = '✅ Cleanup completed successfully! Browser should now be responsive.';
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '❌ Cleanup failed: ' + error.message;
+            }
+        }
+        
+        function goToSetup() {
+            window.location.href = 'setup.html';
+        }
+        
+        // Auto-cleanup when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Automatically perform emergency cleanup on page load
+            setTimeout(emergencyCleanup, 500);
+        });
+    </script>
+</body>
+</html>

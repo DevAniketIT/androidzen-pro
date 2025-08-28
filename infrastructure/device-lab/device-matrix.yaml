@@ -1,0 +1,365 @@
+# Android Device Lab Matrix
+# Comprehensive device coverage for versions 10-15 across major OEMs
+
+device_lab:
+  name: "AndroidZen Device Lab"
+  version: "1.0"
+  total_devices: 45
+  
+# Device Categories
+categories:
+  android_versions:
+    - version: "10"
+      api_level: 29
+      devices: 6
+    - version: "11" 
+      api_level: 30
+      devices: 8
+    - version: "12"
+      api_level: 31
+      devices: 10
+    - version: "13"
+      api_level: 33
+      devices: 12
+    - version: "14"
+      api_level: 34
+      devices: 6
+    - version: "15"
+      api_level: 35
+      devices: 3
+
+  oems:
+    samsung:
+      count: 15
+      market_share: "22%"
+    google:
+      count: 8  
+      market_share: "15%"
+    motorola:
+      count: 7
+      market_share: "12%"
+    xiaomi:
+      count: 8
+      market_share: "18%"
+    oneplus:
+      count: 7
+      market_share: "8%"
+
+# Physical Devices Configuration
+physical_devices:
+  # Samsung Devices
+  - id: "samsung-s23-001"
+    model: "Samsung Galaxy S23"
+    android_version: "14"
+    api_level: 34
+    oem: "samsung"
+    form_factor: "phone"
+    screen_size: "6.1\""
+    resolution: "2340x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "R58N123ABCD"
+    adb_endpoint: "192.168.1.101:5555"
+    location: "rack-1-slot-1"
+    
+  - id: "samsung-s22-001"
+    model: "Samsung Galaxy S22"
+    android_version: "13"
+    api_level: 33
+    oem: "samsung"
+    form_factor: "phone"
+    screen_size: "6.1\""
+    resolution: "2340x1080"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: true
+    device_owner_mode: false
+    serial: "R58N456EFGH"
+    adb_endpoint: "192.168.1.102:5555"
+    location: "rack-1-slot-2"
+    
+  - id: "samsung-s21-001"
+    model: "Samsung Galaxy S21"
+    android_version: "12"
+    api_level: 31
+    oem: "samsung"
+    form_factor: "phone"
+    screen_size: "6.2\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: false
+    device_owner_mode: true
+    serial: "R58N789IJKL"
+    adb_endpoint: "192.168.1.103:5555"
+    location: "rack-1-slot-3"
+    
+  - id: "samsung-note20-001"
+    model: "Samsung Galaxy Note 20"
+    android_version: "11"
+    api_level: 30
+    oem: "samsung"
+    form_factor: "phone"
+    screen_size: "6.7\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "R58N012MNO"
+    adb_endpoint: "192.168.1.104:5555"
+    location: "rack-1-slot-4"
+    
+  - id: "samsung-s10-001"
+    model: "Samsung Galaxy S10"
+    android_version: "10"
+    api_level: 29
+    oem: "samsung"
+    form_factor: "phone"
+    screen_size: "6.1\""
+    resolution: "3040x1440"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: false
+    device_owner_mode: false
+    serial: "G973F345PQR"
+    adb_endpoint: "192.168.1.105:5555"
+    location: "rack-1-slot-5"
+
+  # Google Pixel Devices
+  - id: "pixel-8-001"
+    model: "Google Pixel 8"
+    android_version: "14"
+    api_level: 34
+    oem: "google"
+    form_factor: "phone"
+    screen_size: "6.2\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "3A071FDD4003C8"
+    adb_endpoint: "192.168.1.106:5555"
+    location: "rack-2-slot-1"
+    
+  - id: "pixel-7-001"
+    model: "Google Pixel 7"
+    android_version: "13"
+    api_level: 33
+    oem: "google"
+    form_factor: "phone"
+    screen_size: "6.3\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: true
+    device_owner_mode: false
+    serial: "3A071FDD4003C9"
+    adb_endpoint: "192.168.1.107:5555"
+    location: "rack-2-slot-2"
+    
+  - id: "pixel-6-001"
+    model: "Google Pixel 6"
+    android_version: "12"
+    api_level: 31
+    oem: "google"
+    form_factor: "phone"
+    screen_size: "6.4\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: false
+    device_owner_mode: true
+    serial: "1A071FDD4003CA"
+    adb_endpoint: "192.168.1.108:5555"
+    location: "rack-2-slot-3"
+
+  # Motorola Devices
+  - id: "moto-g84-001"
+    model: "Motorola Moto G84"
+    android_version: "13"
+    api_level: 33
+    oem: "motorola"
+    form_factor: "phone"
+    screen_size: "6.55\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "ZY327NXTGP"
+    adb_endpoint: "192.168.1.109:5555"
+    location: "rack-3-slot-1"
+    
+  - id: "moto-g73-001"
+    model: "Motorola Moto G73"
+    android_version: "13"
+    api_level: 33
+    oem: "motorola"
+    form_factor: "phone"
+    screen_size: "6.5\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: false
+    device_owner_mode: false
+    serial: "ZY327NXTGQ"
+    adb_endpoint: "192.168.1.110:5555"
+    location: "rack-3-slot-2"
+
+  # Xiaomi Devices
+  - id: "xiaomi-13-001"
+    model: "Xiaomi 13"
+    android_version: "13"
+    api_level: 33
+    oem: "xiaomi"
+    form_factor: "phone"
+    screen_size: "6.36\""
+    resolution: "2400x1080"
+    ram: "8GB"
+    storage: "256GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "e4b5c6d7e8f9"
+    adb_endpoint: "192.168.1.111:5555"
+    location: "rack-4-slot-1"
+    
+  - id: "redmi-note12-001"
+    model: "Redmi Note 12"
+    android_version: "12"
+    api_level: 31
+    oem: "xiaomi"
+    form_factor: "phone"
+    screen_size: "6.67\""
+    resolution: "2400x1080"
+    ram: "6GB"
+    storage: "128GB"
+    work_profile_enabled: false
+    device_owner_mode: true
+    serial: "f5g6h7i8j9k0"
+    adb_endpoint: "192.168.1.112:5555"
+    location: "rack-4-slot-2"
+
+  # OnePlus Devices
+  - id: "oneplus-11-001"
+    model: "OnePlus 11"
+    android_version: "13"
+    api_level: 33
+    oem: "oneplus"
+    form_factor: "phone"
+    screen_size: "6.7\""
+    resolution: "3216x1440"
+    ram: "12GB"
+    storage: "256GB"
+    work_profile_enabled: true
+    device_owner_mode: true
+    serial: "GM1915ABC123"
+    adb_endpoint: "192.168.1.113:5555"
+    location: "rack-5-slot-1"
+    
+  - id: "oneplus-10t-001"
+    model: "OnePlus 10T"
+    android_version: "12"
+    api_level: 31
+    oem: "oneplus"
+    form_factor: "phone"
+    screen_size: "6.7\""
+    resolution: "2412x1080"
+    ram: "8GB"
+    storage: "128GB"
+    work_profile_enabled: false
+    device_owner_mode: false
+    serial: "GM1916DEF456"
+    adb_endpoint: "192.168.1.114:5555"
+    location: "rack-5-slot-2"
+
+# Virtual Devices (Emulators)
+virtual_devices:
+  - id: "emulator-api35-001"
+    name: "Android 15 Emulator"
+    android_version: "15"
+    api_level: 35
+    system_image: "system-images;android-35;google_apis;x86_64"
+    device_profile: "Nexus 6P"
+    ram: "4096"
+    heap: "512"
+    storage: "8GB"
+    avd_name: "Android_15_API_35"
+    port: 5554
+    
+  - id: "emulator-api34-001"
+    name: "Android 14 Tablet Emulator"
+    android_version: "14"
+    api_level: 34
+    system_image: "system-images;android-34;google_apis;x86_64"
+    device_profile: "Nexus 10"
+    ram: "4096"
+    heap: "512"
+    storage: "8GB"
+    avd_name: "Android_14_Tablet_API_34"
+    port: 5556
+
+# Device Farm Integration
+device_farm:
+  aws_device_farm:
+    enabled: true
+    project_arn: "arn:aws:devicefarm:us-west-2:123456789012:project:AndroidZenProject"
+    device_pool_arn: "arn:aws:devicefarm:us-west-2:123456789012:devicepool:AndroidZenDevicePool"
+    
+  firebase_test_lab:
+    enabled: true
+    project_id: "androidzen-device-testing"
+    gcs_bucket: "androidzen-test-results"
+
+# Management Profiles
+management_profiles:
+  device_owner:
+    description: "Full device management capabilities"
+    permissions:
+      - "android.permission.MANAGE_DEVICE_POLICY_APPS"
+      - "android.permission.MANAGE_DEVICE_POLICY_CERTIFICATES"
+      - "android.permission.MANAGE_DEVICE_POLICY_LOCATION"
+      - "android.permission.MANAGE_DEVICE_POLICY_RUNTIME_PERMISSIONS"
+      - "android.permission.MANAGE_DEVICE_POLICY_SECURITY"
+    restrictions:
+      - "disable_camera"
+      - "disable_bluetooth"
+      - "restrict_app_installations"
+      
+  work_profile:
+    description: "Managed work profile for BYOD scenarios"
+    permissions:
+      - "android.permission.MANAGE_DEVICE_POLICY_APPS"
+      - "android.permission.MANAGE_DEVICE_POLICY_CERTIFICATES"
+    restrictions:
+      - "disable_work_profile_widgets"
+      - "restrict_cross_profile_content_sharing"
+
+# Health Monitoring
+health_monitoring:
+  device_status_check:
+    enabled: true
+    interval: "5m"
+    timeout: "30s"
+    
+  battery_monitoring:
+    enabled: true
+    low_battery_threshold: 20
+    charging_required_threshold: 15
+    
+  temperature_monitoring:
+    enabled: true
+    warning_threshold: 45
+    critical_threshold: 60
+    
+  storage_monitoring:
+    enabled: true
+    low_storage_threshold: 1024  # MB
+    
+  connectivity_check:
+    enabled: true
+    adb_timeout: "10s"
+    ping_interval: "1m"

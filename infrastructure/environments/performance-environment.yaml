@@ -1,0 +1,258 @@
+# Performance Test Environment Configuration
+# High-performance environment for load testing and performance validation
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: performance-environment-config
+  namespace: androidzen-performance
+data:
+  environment: "performance"
+  
+---
+# Infrastructure Configuration
+infrastructure:
+  cloud_provider: "aws"
+  region: "us-west-2"
+  availability_zones:
+    - "us-west-2a"
+    - "us-west-2b"
+    - "us-west-2c"
+
+# Compute Configuration (Higher specs for performance testing)
+compute:
+  kubernetes:
+    version: "1.28"
+    node_pools:
+      - name: "performance-pool"
+        machine_type: "c5.2xlarge"  # CPU-optimized for performance testing
+        min_nodes: 3
+        max_nodes: 20
+        disk_size: "200Gi"
+        disk_type: "gp3"
+        labels:
+          workload-type: "performance"
+      - name: "device-lab-pool"
+        machine_type: "m5.2xlarge"
+        min_nodes: 2
+        max_nodes: 10
+        disk_size: "500Gi"
+        disk_type: "gp3"
+        labels:
+          workload-type: "device-lab"
+
+# Application Configuration (Scaled for load testing)
+applications:
+  androidzen-backend:
+    image: "androidzen/backend:latest"
+    replicas: 10  # Higher replica count for load testing
+    resources:
+      requests:
+        cpu: "1000m"
+        memory: "2Gi"
+      limits:
+        cpu: "2000m"
+        memory: "4Gi"
+    env:
+      - name: "ENVIRONMENT"
+        value: "performance"
+      - name: "LOG_LEVEL"
+        value: "INFO"
+      - name: "MAX_CONNECTIONS"
+        value: "1000"
+      - name: "WORKER_PROCESSES"
+        value: "4"
+    
+  androidzen-frontend:
+    image: "androidzen/frontend:latest"
+    replicas: 5
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
+
+# Database Configuration (High-performance setup)
+database:
+  postgresql:
+    version: "15.4"
+    instance_class: "db.r5.2xlarge"  # Memory-optimized
+    allocated_storage: 500
+    storage_type: "gp3"
+    iops: 3000
+    storage_encrypted: true
+    multi_az: true
+    backup_retention_period: 7
+    performance_insights_enabled: true
+    monitoring_interval: 60
+    
+    parameters:
+      shared_preload_libraries: "pg_stat_statements"
+      max_connections: 500
+      shared_buffers: "2GB"
+      effective_cache_size: "6GB"
+      work_mem: "4MB"
+      maintenance_work_mem: "512MB"
+      
+  redis:
+    version: "7.0"
+    instance_class: "cache.r5.xlarge"
+    num_cache_nodes: 3
+    parameter_group: "default.redis7"
+    cluster_enabled: true
+
+# Load Testing Configuration
+load_testing:
+  tools:
+    - name: "k6"
+      enabled: true
+      concurrent_users: 1000
+      duration: "10m"
+      ramp_up: "2m"
+      
+    - name: "artillery"
+      enabled: true
+      phases:
+        - duration: 300  # 5 minutes
+          arrivalRate: 10
+        - duration: 600  # 10 minutes
+          arrivalRate: 50
+        - duration: 300  # 5 minutes
+          arrivalRate: 100
+          
+    - name: "jmeter"
+      enabled: true
+      test_plan: "/performance-tests/androidzen-load-test.jmx"
+      threads: 500
+      duration: 600
+      
+  scenarios:
+    - name: "device-connection-load"
+      description: "Simulate 1000 concurrent device connections"
+      target_rps: 100
+      duration: "15m"
+      
+    - name: "api-endpoint-stress"
+      description: "Stress test all API endpoints"
+      target_rps: 500
+      duration: "30m"
+      
+    - name: "websocket-load"
+      description: "Test WebSocket performance under load"
+      concurrent_connections: 5000
+      duration: "10m"
+
+# Autoscaling Configuration (Aggressive scaling)
+autoscaling:
+  horizontal_pod_autoscaler:
+    enabled: true
+    min_replicas: 5
+    max_replicas: 50
+    target_cpu_utilization: 60
+    target_memory_utilization: 70
+    scale_up_stabilization: 60s
+    scale_down_stabilization: 300s
+    
+  vertical_pod_autoscaler:
+    enabled: true
+    update_mode: "Auto"
+    
+  cluster_autoscaler:
+    enabled: true
+    scale_down_delay_after_add: "5m"
+    scale_down_unneeded_time: "5m"
+    scale_down_utilization_threshold: 0.3
+
+# Performance Monitoring Configuration
+performance_monitoring:
+  prometheus:
+    enabled: true
+    retention: "7d"
+    storage_size: "100Gi"
+    scrape_interval: "10s"
+    evaluation_interval: "10s"
+    
+  grafana:
+    enabled: true
+    plugins:
+      - "grafana-piechart-panel"
+      - "grafana-worldmap-panel"
+      - "grafana-clock-panel"
+      
+  custom_metrics:
+    - name: "device_connection_time"
+      type: "histogram"
+      buckets: [0.1, 0.5, 1.0, 2.5, 5.0, 10.0]
+      
+    - name: "api_response_time"
+      type: "histogram"
+      buckets: [0.01, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0]
+      
+    - name: "websocket_message_latency"
+      type: "histogram"
+      buckets: [0.001, 0.01, 0.1, 0.5, 1.0]
+
+# Network Configuration (Optimized for performance)
+networking:
+  service_mesh:
+    enabled: true
+    provider: "istio"
+    version: "1.19"
+    
+  ingress:
+    enabled: true
+    class: "nginx"
+    replicas: 3
+    resources:
+      requests:
+        cpu: "1000m"
+        memory: "1Gi"
+      limits:
+        cpu: "2000m"
+        memory: "2Gi"
+    config:
+      worker-connections: "16384"
+      max-worker-open-files: "65536"
+      keepalive-requests: "10000"
+
+# Storage Configuration
+storage:
+  classes:
+    - name: "fast-ssd"
+      provisioner: "kubernetes.io/aws-ebs"
+      parameters:
+        type: "gp3"
+        iops: "3000"
+        throughput: "125"
+        
+    - name: "high-iops"
+      provisioner: "kubernetes.io/aws-ebs"
+      parameters:
+        type: "io2"
+        iops: "10000"
+
+# Security Configuration (Performance-aware)
+security:
+  pod_security_policy:
+    enabled: true
+    
+  rbac:
+    enabled: true
+    
+  network_policies:
+    enabled: false  # Disabled for maximum performance
+    
+  tls:
+    enabled: true
+    cipher_suites: "ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20:!aNULL:!MD5:!DSS"
+
+# Cleanup Configuration
+cleanup:
+  enabled: true
+  schedule: "0 4 * * *"  # Daily at 4 AM
+  retention:
+    logs: "24h"
+    metrics: "7d"
+    test_results: "30d"

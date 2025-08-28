@@ -1,0 +1,163 @@
+PROPRIETARY LICENSE
+
+AndroidZen Pro Frontend - Proprietary Software License
+Copyright (c) 2024 Aniket. All rights reserved.
+
+=====================================
+IMPORTANT: READ CAREFULLY
+=====================================
+
+This frontend application and associated documentation files (the "Software") are 
+proprietary to Aniket (the "Owner") and are protected by copyright law and 
+international treaties. This Software is part of the AndroidZen Pro platform.
+
+PERMISSION REQUIRED FOR ANY USE
+===============================
+
+Any individual, organization, or entity wishing to:
+- Use this software
+- Copy this software
+- Modify this software
+- Merge this software with other software
+- Publish this software
+- Distribute this software
+- Sublicense this software
+- Sell copies of this software
+
+MUST obtain explicit written permission from the Owner (Aniket) before proceeding.
+
+RESTRICTIONS
+============
+
+1. COMMERCIAL USE: Commercial use is strictly prohibited without a separate 
+   commercial license agreement.
+
+2. REDISTRIBUTION: The Software cannot be redistributed, shared, or made 
+   available to third parties without explicit permission.
+
+3. MODIFICATION: Modifications are not permitted without explicit permission.
+
+4. REVERSE ENGINEERING: Reverse engineering, decompilation, or disassembly 
+   is prohibited.
+
+5. DERIVATIVE WORKS: Creating derivative works based on this Software is 
+   prohibited without written consent.
+
+6. COMPONENT SEPARATION: Individual components, modules, or code snippets 
+   cannot be extracted and used separately without permission.
+
+FRONTEND-SPECIFIC TERMS
+======================
+
+This frontend application:
+- Is designed exclusively for AndroidZen Pro backend systems
+- Contains proprietary UI/UX designs and implementations
+- Includes custom React components and business logic
+- Must not be used with competing or alternative backend systems
+- Cannot be white-labeled or rebranded without authorization
+
+DEVELOPMENT AND CONTRIBUTIONS
+=============================
+
+Development contributions are subject to:
+- Contributor License Agreement (CLA) requirements
+- Code review and approval processes
+- Confidentiality and non-disclosure obligations
+- Intellectual property assignment to the Owner
+
+All contributed code becomes the exclusive property of the Owner.
+
+TECHNOLOGY STACK LICENSING
+==========================
+
+This Software utilizes open-source technologies (React, TypeScript, Material-UI, etc.) 
+under their respective licenses. The integration, customization, and business logic 
+implementation remain proprietary and are subject to this license.
+
+Third-party dependencies maintain their original licenses and are used in compliance 
+with their respective terms.
+
+PERMISSION REQUESTS
+==================
+
+To request permission for any use:
+- Contact: Repository owner through GitHub
+- Repository: https://github.com/@DevAniketIT/androidzen-pro
+- Email: [Contact through repository owner profile]
+- Provide: Detailed information about intended use, scope, duration, and commercial nature
+- Wait for: Written approval before proceeding
+
+All permission requests will be evaluated on a case-by-case basis.
+
+LEGAL CONSEQUENCES
+=================
+
+Unauthorized use, reproduction, or distribution of this Software, or any portion 
+of it, may result in severe civil and criminal penalties, and will be prosecuted 
+to the maximum extent possible under the law.
+
+Violations include but are not limited to:
+- Using the Software without permission
+- Copying code or UI designs
+- Creating competing products using this Software
+- Reverse engineering proprietary algorithms
+- Disclosing confidential implementation details
+
+DISCLAIMER OF WARRANTIES
+=======================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE OWNER BE 
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+LIMITATION OF LIABILITY
+======================
+
+IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR 
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+GOVERNING LAW
+=============
+
+This license shall be governed by and construed in accordance with the laws 
+of the jurisdiction where the Owner resides, without regard to its conflict 
+of law provisions.
+
+Any legal action or proceeding arising under this license will be brought 
+exclusively in the courts of competent jurisdiction in the Owner's location.
+
+TERMINATION
+===========
+
+This license is effective until terminated. Your rights under this license 
+will terminate automatically without notice from the Owner if you fail to 
+comply with any term(s) of this license.
+
+Upon termination, you must cease all use of the Software and destroy all 
+copies, full or partial, of the Software in your possession or control.
+
+ENTIRE AGREEMENT
+================
+
+This license constitutes the entire agreement between you and the Owner 
+concerning the Software and supersedes all prior or contemporaneous 
+agreements, whether written or oral, concerning the Software.
+
+This license may only be modified by a written amendment signed by an 
+authorized representative of the Owner.
+
+=====================================
+© 2024 Aniket. All rights reserved.
+=====================================
+
+For questions regarding this license, contact the repository owner through 
+the official GitHub repository at:
+https://github.com/@DevAniketIT/androidzen-pro

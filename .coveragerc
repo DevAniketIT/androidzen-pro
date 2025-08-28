@@ -1,0 +1,37 @@
+[run]
+source = backend
+omit = 
+    */venv/*
+    */env/*
+    */tests/*
+    */test_*
+    */__pycache__/*
+    */migrations/*
+    */alembic/versions/*
+    backend/config/*
+    backend/examples/*
+    setup.py
+    conftest.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
+    if settings.DEBUG
+    raise AssertionError
+    raise NotImplementedError
+    if 0:
+    if __name__ == .__main__.:
+    class .*\bProtocol\):
+    @(abc\.)?abstractmethod
+
+show_missing = True
+precision = 2
+fail_under = 70
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml
