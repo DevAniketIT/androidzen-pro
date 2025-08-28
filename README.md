@@ -312,7 +312,7 @@ Security is a top priority for AndroidZen Pro. If you discover any security vuln
 📝 **Documentation**: [docs.androidzen.pro](https://docs.androidzen.pro)  
 🐛 **Issues**: [GitHub Issues](https://github.com/DevAniketIT/androidzen-pro/issues)  
 
-**Enterprise Support**: contact@androidzen.pro
+**Enterprise Support**: aniket.kumar.devpro@gmail.com
 
 </div>
 
