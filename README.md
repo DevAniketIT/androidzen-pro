@@ -86,9 +86,9 @@ docker compose up -d
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| **Web Dashboard** | http://localhost:3000 | `admin` / `admin123` |
+| **Web Dashboard** | http://localhost:3000 | `admin` / `********` |
 | **API Documentation** | http://localhost:8000/docs | - |
-| **Admin Panel** | http://localhost:3000/admin | `admin` / `admin123` |
+| **Admin Panel** | http://localhost:3000/admin | `admin` / `********` |
 
 ---
 
@@ -312,7 +312,7 @@ Security is a top priority for AndroidZen Pro. If you discover any security vuln
 📝 **Documentation**: [docs.androidzen.pro](https://docs.androidzen.pro)  
 🐛 **Issues**: [GitHub Issues](https://github.com/DevAniketIT/androidzen-pro/issues)  
 
-**Enterprise Support**: aniket.kumar.devpro@gmail.com
+**Support**: aniket.kumar.devpro@gmail.com
 
 </div>
 
