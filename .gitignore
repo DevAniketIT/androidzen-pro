@@ -211,6 +211,9 @@ screenshot*.jpg
 *screencapture*
 *screenshot*
 
+# But allow the screenshots directory for documentation
+!screenshots/
+
 # Prevent redundant documentation
 README_*_TESTING.md
 RELEASE_CHECKLIST.md
