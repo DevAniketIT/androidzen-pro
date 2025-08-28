@@ -6,12 +6,12 @@ Enterprise-grade Android device management platform for comprehensive device fle
 
 ## Overview
 
-AndroidZen Pro provides a complete solution for organizations to manage, monitor, and optimize Android device fleets. It offers enterprise-grade security, real-time analytics, and streamlined device administration through a modern web interface.
+AndroidZen Pro provides a complete solution for organisations to manage, monitor, and optimise Android device fleets. It offers enterprise-grade security, real-time analytics, and streamlined device administration through a modern web interface.
 
 ## Features
 
 - Device enrollment, monitoring, and health management
-- Real-time analytics and performance optimization
+- Real-time analytics and performance optimisation
 - Security auditing and policy enforcement
 - Role-based access control and audit logging
 - Production-ready deployment with Docker
@@ -43,7 +43,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Default credentials: admin/admin123
+Default credentials: admin/ **********
 
 For production deployment and detailed installation instructions, see [docs/INSTALLATION.md](docs/INSTALLATION.md).
 
