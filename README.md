@@ -16,6 +16,14 @@ AndroidZen Pro provides a complete solution for organisations to manage, monitor
 - Role-based access control and audit logging
 - Production-ready deployment with Docker
 
+## Screenshots
+
+### Device Connected
+![Device Connected Screenshot](./screenshots/Connect%20Device.jpeg)
+
+### No Device Connected
+![No Device Connected Screenshot](./screenshots/without%20connect%20Device.jpeg)
+
 ## Quick Start
 
 ```bash
